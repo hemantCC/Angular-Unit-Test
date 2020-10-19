@@ -37,7 +37,7 @@ export class AddCustomerComponent implements OnInit, OnDestroy {
   }
 
   // go forward in steper
-  goForward(stepper: MatStepper) {
+  goForward(stepper: MatStepper) { 
     stepper.next();
   }
 

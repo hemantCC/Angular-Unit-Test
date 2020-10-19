@@ -20,10 +20,10 @@ export class Master1Component implements OnChanges {
   subscription: Subscription;                         //holds subscription for getting control
   @Input() currentCustomerDetails:any = {}            // holds current customer data if any
 
-  //#endregion variables
+  //#endregion variables 
 
   constructor(
-    private formBuilder: FormBuilder,
+    private formBuilder: FormBuilder, 
     private toastr: ToastrService,
     private _customerService: CustomerService
   ) {
