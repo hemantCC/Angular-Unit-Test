@@ -16,7 +16,9 @@ describe('Master2Component', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ Master2Component ],
-      imports:[ReactiveFormsModule,HttpClientModule, ToastrModule.forRoot({
+      imports:[ReactiveFormsModule,
+        HttpClientModule, 
+        ToastrModule.forRoot({
         preventDuplicates: true
       })],
       providers:[CustomerService]
@@ -52,7 +54,7 @@ describe('Master2Component', () => {
     //arrange
     const compiled = fixture.debugElement.nativeElement;  
     spyOn(customerService,'saveCustomerData').and.callThrough();    
-    spyOn(component,'onSubmit');
+    spyOn(component,'onSubmit').and.callThrough();
     
     //act
     fixture.debugElement.query(By.css('#submitBtn'))

@@ -47,7 +47,6 @@ export class Master2Component implements OnChanges {
 
   // handles submit
   onSubmit() {
-    console.log(this.master2Form.value);
     this._customerService.saveCustomerData(this.master2Form.value);
     this.toastr.success('Your Customer data has been saved!', 'Sucessful');
   }

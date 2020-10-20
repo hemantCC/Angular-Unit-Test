@@ -29,42 +29,31 @@ import { Master2Component } from './components/shared/master2/master2.component'
 import { Master1Component } from './components/shared/master1/master1.component';
 import { FaInformationComponent } from './components/shared/fa-information/fa-information.component';
 import { ConsultantComponent } from './components/shared/consultant/consultant.component';
+import { MaterialModule } from './components/shared/material.module';
+import { AddCustomerModule } from './components/add-customer/add-customer.module';
+import { SharedModule } from './components/shared/shared.module';
+import { DashboardModule } from './components/dashboard/dashboard.module';
+import { EditCustomerModule } from './components/edit-customer/edit-customer.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    DashboardComponent,
-    EditCustomerComponent,
-    AddCustomerComponent,
-    Master2Component,
-    Master1Component,
-    FaInformationComponent,
-    ConsultantComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MatStepperModule,
-    MatFormFieldModule,
-    MatSelectModule,
-    MatInputModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
-    MatButtonModule,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    MatTableModule,
-    MatPaginatorModule,
-    MatSortModule,
-    MatTabsModule,
-    NgxSpinnerModule,
     ToastrModule.forRoot({
       preventDuplicates: true
     }),
-    MatIconModule,
-    MatSidenavModule
+    MaterialModule,
+    AddCustomerModule,
+    SharedModule,
+    DashboardModule,
+    EditCustomerModule
   ],
   providers: [
     {

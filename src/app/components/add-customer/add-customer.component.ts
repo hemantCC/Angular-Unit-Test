@@ -14,6 +14,7 @@ export class AddCustomerComponent implements OnInit, OnDestroy {
 
   controls: any = [];  //contains all controls
   subscription: Subscription;  //subscription for get controls
+  @ViewChild('stepper') stepper: MatStepper;
 
   constructor(private _controlService: ControlService) {}
 
@@ -32,13 +33,13 @@ export class AddCustomerComponent implements OnInit, OnDestroy {
   }
 
   // go back in stepper
-  goBack(stepper: MatStepper) {
-    stepper.previous();
+  goBack() {
+    this.stepper.previous();
   }
 
   // go forward in steper
-  goForward(stepper: MatStepper) { 
-    stepper.next();
+  goForward() { 
+    this.stepper.next();
   }
 
   ngOnDestroy() {

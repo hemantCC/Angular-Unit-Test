@@ -41,7 +41,7 @@ export class Master1Component implements OnChanges {
     });
     if(this.currentCustomerDetails !== undefined){
     this.initializeFormValues();
-    }
+    } 
   }
 
   //initialize form values
@@ -65,7 +65,7 @@ export class Master1Component implements OnChanges {
   
 
   // handles form submition
-  async onSubmit() {
+  onSubmit() {
     this._customerService.saveCustomerData(this.master1Form.value);
     this.toastr.success('Your Customer data has been saved!', 'Sucessful');
   }

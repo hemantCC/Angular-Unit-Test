@@ -41,7 +41,6 @@ export class FaInformationComponent implements OnChanges {
 
   // handles  form submition 
   onSubmit() {
-    console.log(this.master3Form.value);
     this._customerService.saveCustomerData(this.master3Form.value);
     this.toastr.success('Your Customer data has been saved!', 'Sucessful');
   }

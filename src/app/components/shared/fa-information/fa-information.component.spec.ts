@@ -54,7 +54,7 @@ describe('FaInformationComponent', () => {
     //arrange
     const compiled = fixture.debugElement.nativeElement;  
     spyOn(customerService,'saveCustomerData').and.callThrough();    
-    spyOn(component,'onSubmit');
+    spyOn(component,'onSubmit').and.callThrough();
     
     //act
     fixture.debugElement.query(By.css('#submitBtn'))
@@ -67,5 +67,6 @@ describe('FaInformationComponent', () => {
         expect(customerService.saveCustomerData).toHaveBeenCalled();
       });
   })
+
 
 });

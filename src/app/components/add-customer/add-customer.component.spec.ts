@@ -1,9 +1,12 @@
 import { createComponent } from '@angular/compiler/src/core';
 import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
-import { MatStepper } from '@angular/material/stepper';
+import { MatStepper, MatStepperModule } from '@angular/material/stepper';
+import { By } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { of } from 'rxjs';
 
 import { ControlService } from 'src/app/services/control.service';
+import { MaterialModule } from '../shared/material.module';
 import { AddCustomerComponent } from './add-customer.component';
 
 describe('AddCustomerComponent', () => {
@@ -22,7 +25,8 @@ describe('AddCustomerComponent', () => {
             isRequired:true,
             controlType:2,Module:1,
             dropdownValues:['value1','value2']}]) }
-        }]
+        }],
+        imports:[MatStepperModule,BrowserAnimationsModule]
     })
     .compileComponents();
   });
@@ -34,7 +38,7 @@ describe('AddCustomerComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should create component', () => {
     expect(component).toBeTruthy();
   });
 
@@ -46,11 +50,14 @@ describe('AddCustomerComponent', () => {
   })
 
   it('populateControls should return controls',()=>{
+    //arrange
     spyOn(controlService,'getControls').and.callThrough();
+    
+    //act
     component.ngOnInit();
-
     fixture.detectChanges();
 
+    //assert
     expect(component.controls).toEqual([{ name: 'salutation',
     entityName: 'Salutation' ,
     isRequired:true,
@@ -58,13 +65,22 @@ describe('AddCustomerComponent', () => {
     dropdownValues:['value1','value2']}]);
   })
 
-  // it('goForward() should go forward in stepper.',()=>{
-  //   let MatFixture : ComponentFixture<MatStepper>;
-  //   MatFixture = createComponent(MatStepper);
+  describe('Stepper tests',()=>{
 
-  //   component.goForward(stepper);
-  //   fixture.detectChanges();
-  //   expect(stepper.selectedIndex).toEqual(1);
-  // })
+    it('should default to the first step', () => {
+      expect(component.stepper.selectedIndex).toBe(0);
+    });
+  
+    it('should set to next step on goForward() ', () => {
+      component.goForward();
+      expect(component.stepper.selectedIndex).toBe(1);
+    });
+  
+    it('should set to previous step on goForward() ', () => {
+      component.stepper.selectedIndex = 1
+      component.goBack();
+      expect(component.stepper.selectedIndex).toBe(0);
+    });
+  })
 
 })

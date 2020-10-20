@@ -1,8 +1,7 @@
 import { HttpClientModule } from '@angular/common/http';
-import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
-import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ToastrModule } from 'ngx-toastr';
 import { CustomerService } from 'src/app/services/customer.service';
@@ -56,7 +55,7 @@ describe('ConsultantComponent', () => {
     //arrange
     const compiled = fixture.debugElement.nativeElement;  
     spyOn(customerService,'postCustomer').and.callThrough();    
-    spyOn(component,'onSubmit');
+    spyOn(component,'onSubmit').and.callThrough();
     
     //act
     fixture.debugElement.query(By.css('#submitBtn'))
