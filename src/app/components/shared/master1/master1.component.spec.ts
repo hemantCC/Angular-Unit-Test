@@ -1,6 +1,6 @@
 import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
-import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {  FormControl, ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
@@ -49,7 +49,7 @@ describe('Master1Component', () => {
 
 
 
-  it('should create dynamic form controls ngOnChange()',()=>{
+  it('should create dynamic form controls ngOnChange()',() => {
     //arrange
     component.master1Controls = helper.getControls(2);
 
@@ -81,22 +81,33 @@ describe('Master1Component', () => {
   })
 
 
-  // fit('should initialize form when currentCustomer data is defined',fakeAsync(()=>{
-  //   //arrange
-  //   component.master1Controls = helper.getControls(1);
-  //   editComponent.customerDetails = helper.getCustomerDetails();
-  //   component.master1Form.addControl('Salutation_0',new FormControl(''))
+  it('should initialize form when currentCustomer data is defined', fakeAsync(()=>{
+    //arrange
+    component.currentCustomerDetails = helper.getCustomerDetails();
+    component.master1Controls = helper.getControls(1);
+    component.master1Form.addControl('Salutation_0',new FormControl(''))
 
-  //   //act
-  //   component.initializeFormValues();
-  //   fixture.detectChanges();
-  //   tick();
+    //act
+    component.initializeFormValues();
+    fixture.detectChanges();
+    tick();
 
-  //   //assert
-  //   fixture.whenStable().then(() =>{
-  //     expect(component.master1Form.get('Salutation_0').value).toEqual('Sal_Value');
-  //   });
-  // }))
+    //assert
+    fixture.whenStable().then(() =>{
+      expect(component.master1Form.get('Salutation_0').value).toEqual('Sal_Value');
+    });
+  }))
+
+  it('should call customer service when submit is called',() => {
+    //arange
+    const customerSpy = spyOn(customerService,'saveCustomerData').and.callThrough(); 
+
+    //act
+    component.onSubmit();
+
+    //assert
+    expect(customerSpy).toHaveBeenCalledTimes(1);
+  })
 
 
 });

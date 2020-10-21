@@ -23,7 +23,7 @@ export class EditCustomerComponent implements OnInit, OnDestroy {
     private _controlService: ControlService,
     private route: ActivatedRoute,
     private _customerService: CustomerService
-  ) {}
+  ) {} 
 
   ngOnInit(): void {
     this.populateControls();
@@ -47,14 +47,9 @@ export class EditCustomerComponent implements OnInit, OnDestroy {
       this.customerId = params['id'];
     });
     this.customerSubscription = this._customerService.getCustomerById(this.customerId).subscribe(
-      (res:any) => {
+      (res:any) => {  
         this.customerDetails = res;
-        console.log(this.customerDetails);
-      },
-      err => {
-        console.log(err);
-      }
-    );
+      });
   }
 
   // handles all unsubscriptions

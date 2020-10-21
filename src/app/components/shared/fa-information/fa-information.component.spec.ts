@@ -1,5 +1,5 @@
 import { HttpClientModule } from '@angular/common/http';
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
@@ -66,6 +66,17 @@ describe('FaInformationComponent', () => {
         expect(component.onSubmit).toHaveBeenCalled();
         expect(customerService.saveCustomerData).toHaveBeenCalled();
       });
+  })
+
+  it('should call customer service when submit is called',() => {
+    //arange
+    spyOn(customerService,'saveCustomerData').and.callThrough(); 
+
+    //act
+    component.onSubmit();
+
+    //assert
+    expect(customerService.saveCustomerData).toHaveBeenCalled();
   })
 
 

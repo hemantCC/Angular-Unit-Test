@@ -47,19 +47,19 @@ export class ConsultantComponent implements OnChanges, OnDestroy {
       .postCustomer(this.master4Form.value)
       .subscribe(
         (res: Response) => {
-          console.log(res);
           this.toastr.success(
             'Your Customer data has been saved!',
             'Sucessful'
           );
           localStorage.removeItem('customerData');
           this.router.navigateByUrl('/');
-        },
-        err => {
-          console.log(err);
-          this.toastr.error('Could not save data!', 'Failed');
-        }
-      );
+          }
+          // ,
+        // err => {
+        //   console.log(err);
+        //   this.toastr.error('Could not save data!', 'Failed');
+        // }
+      ); 
   }
 
   // handles unsubscribe

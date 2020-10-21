@@ -68,4 +68,15 @@ describe('Master2Component', () => {
       });
   })
 
+  it('should call customer service when submit is called',() => {
+    //arange
+    spyOn(customerService,'saveCustomerData').and.callThrough(); 
+
+    //act
+    component.onSubmit();
+
+    //assert
+    expect(customerService.saveCustomerData).toHaveBeenCalled();
+  })
+
 });

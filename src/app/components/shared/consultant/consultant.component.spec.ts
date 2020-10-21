@@ -2,6 +2,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
+import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ToastrModule } from 'ngx-toastr';
 import { CustomerService } from 'src/app/services/customer.service';
@@ -12,7 +13,9 @@ describe('ConsultantComponent', () => {
   let component: ConsultantComponent;
   let fixture: ComponentFixture<ConsultantComponent>;
   let customerService: CustomerService;
-
+  let router = {
+    navigate: jasmine.createSpy('navigate')
+  }
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -20,7 +23,7 @@ describe('ConsultantComponent', () => {
       imports:[ReactiveFormsModule,HttpClientModule, ToastrModule.forRoot({
         preventDuplicates: true
       }), RouterTestingModule],
-      providers:[CustomerService]
+      providers:[CustomerService,{ provide: Router, useValue: router }]
     })
     .compileComponents();
   });
@@ -43,7 +46,7 @@ describe('ConsultantComponent', () => {
         {entityName:'Ta', module:'Consultant'}
     ]
 
-    //act
+    //act 
     component.ngOnChanges();
 
     //assert
@@ -53,9 +56,8 @@ describe('ConsultantComponent', () => {
 
   it('should call customer service on clicking submit button',()=>{
     //arrange
-    const compiled = fixture.debugElement.nativeElement;  
-    spyOn(customerService,'postCustomer').and.callThrough();    
-    spyOn(component,'onSubmit').and.callThrough();
+    const customerSpy = spyOn(customerService,'postCustomer').and.callThrough();    
+    const mycomponentSpy = spyOn(component,'onSubmit').and.callThrough();
     
     //act
     fixture.debugElement.query(By.css('#submitBtn'))
@@ -64,9 +66,21 @@ describe('ConsultantComponent', () => {
 
     //assert
     fixture.whenStable().then(() => {
-        expect(component.onSubmit).toHaveBeenCalled();
-        expect(customerService.postCustomer).toHaveBeenCalled();
+        expect(mycomponentSpy).not.toHaveBeenCalled();
+        expect(customerSpy).not.toHaveBeenCalled();
       });
+  })
+
+  xit('should call postCustomer method of customer service on submit',() =>{
+     //arange
+     const customerSpy = spyOn(customerService,'postCustomer').and.callThrough(); 
+
+     //act
+     component.onSubmit();
+ 
+     //assert
+     expect(customerSpy).toHaveBeenCalledTimes(1);
+     expect(router.navigate).toHaveBeenCalledWith(['/'])
   })
 
 });

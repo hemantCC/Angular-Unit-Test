@@ -53,8 +53,8 @@ export class Master1Component implements OnChanges {
             data  = this.currentCustomerDetails[key]
             return;
           }
-        })
-        
+        }) 
+        debugger;
         if (control.module === 'Master1'){      
           this.master1Form.patchValue({               // initializes form values 
             [control.entityName] : data
