@@ -1,0 +1,47 @@
+// it('should call customer service on clicking submit button',()=>{
+  //   //arrange
+  //   const compiled = fixture.debugElement.nativeElement;  
+  //   spyOn(customerService,'saveCustomerData').and.callThrough();    
+  //   spyOn(component,'onSubmit');
+    
+  //   //act
+  //   fixture.debugElement.query(By.css('#submitBtn'))
+  //   .triggerEventHandler('click',null);
+  //   fixture.detectChanges();
+
+  //   //assert
+  //   fixture.whenStable().then(() => {
+  //       expect(component.onSubmit).toHaveBeenCalled();
+  //       expect(customerService.saveCustomerData).toHaveBeenCalled();
+  //     });
+  // })
+
+
+---------------------------------------------------------------------
+  let customerServiceMock: any;
+      providers:[{provide: CustomerService, useValue:customerServiceMock}]
+
+
+
+it('should call customer service on clicking submit button',()=>{
+    //arrange
+    customerServiceMock = jasmine.createSpyObj(customerServiceMock,['onSubmit'])
+    spyOn(component,'onSubmit');
+
+    //act
+    fixture.debugElement.query(By.css('#submitBtn'))
+    .triggerEventHandler('click',null);
+    fixture.detectChanges();
+
+    //assert
+    fixture.whenStable().then(() => {
+        expect(customerServiceMock.calls.count()).toEqual(1);
+        expect(customerServiceMock.calls.mostRecent().args[0]).toEqual("onSubmit");
+        expect(component.onSubmit).toHaveBeenCalled();
+      });
+  })
+
+
+
+
+

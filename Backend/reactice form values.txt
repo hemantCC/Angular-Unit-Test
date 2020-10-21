@@ -1,0 +1,36 @@
+<!-- condition for dropdown controller -->
+      <mat-form-field
+        class="w-75"
+        *ngIf="control.controlType == 'Dropdown' && control.module == 'Master1'"
+      >
+        <mat-label>{{ control.name }}</mat-label>
+        <mat-select>
+          <mat-option
+            *ngFor="let option of control.dropdownValues"
+            value="option"
+          >
+            {{ option }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <!-- condition for textbox -->
+      <mat-form-field
+        class="w-75"
+        *ngIf="control.controlType == 'Textbox' && control.module == 'Master1'"
+      >
+        <mat-label>{{ control.name }}</mat-label>
+        <input matInput />
+      </mat-form-field>
+
+      <!-- condition for datepicker -->
+      <mat-form-field
+        appearance="fill"
+        class="w-75"
+        *ngIf="control.controlType == 'Date' && control.module == 'Master1'"
+      >
+        <mat-label>{{ control.name }} </mat-label>
+        <input matInput [matDatepicker]="picker" />
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>

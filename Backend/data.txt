@@ -1,0 +1,101 @@
+[TblAddressOrigin]
+Anfrage per Mail/Internet
+Directmail
+Externe Adressanbieter
+Gewinnspiel
+Importeur
+
+[TblAfterSalesConsultant]
+141 - Freundlich Johann
+50 - Admin_B2_50
+IKR - krol Ines
+
+[TblBankCollection]
+AL - Abbuchung
+EL - Einzug
+KL - Keine Lastschriften
+
+[TblCountry]
+Germany
+Neitherlands
+Amsterdam
+
+[TblCreditBlocking]
+0 - No credit freeze
+1 - reference - credit blocking
+2 - credit blocking
+
+[TblCustomerCategory]
+D | Handler
+I | Intern
+
+[TblCustomerState]
+Customer
+Prospective Client
+
+[TblCustomerType]
+BEH
+FFU
+FOG
+
+[TblLegalForm]
+001 - Privateperson
+002 - Elizelunternehmen
+003 - Juristische
+
+[TblMethodOfGeneralPayment]
+BAR - Barzahler
+BON - Bonempfänger
+REC - Rechnungsempfänger
+
+[TblMethodOfVehiclePayment]
+BON - Bonempfänger
+REC - Rechnungsempfänger
+BAR - Barzahlerr
+
+[TblPartsSalesAssistance]
+GUN - Unger Ge
+IKR - krol Ines
+LAC - Lackner B
+
+[TblSalesConsultant]
+50 - Admin_B2_50
+AHE - Heilmann
+DKU - Kumpitsch Daniel
+
+[TblSalutation]
+ADA - An das
+ADE - An den
+ADI - An die
+AHF - Herr and frau
+
+[TblSolvency]
+100 - Ausgezeichnete Bonität
+150 - Sehr gute Bonität
+200 - Gute Bonität
+
+[TblTa]
+DDR - DDr.
+DI -DI
+DIF -DI (FH)
+
+[TblTb]
+Anfrage per Mail/Internet
+Directmail
+Importeur
+Gewinnspiel
+
+[TblTermsOfGeneralPayment]
+000 - Ohne Abzug nach Rechnungserhalt
+050 - Abbuchung
+051 - Vorauskasse
+
+[TblTermsOfVehiclePayment]
+000 - Ohne Abzug nach Rechnungserhalt
+050 - Abbuchung
+051 - Vorauskasse
+
+
+
+
+
