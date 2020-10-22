@@ -13,9 +13,8 @@ describe('ConsultantComponent', () => {
   let component: ConsultantComponent;
   let fixture: ComponentFixture<ConsultantComponent>;
   let customerService: CustomerService;
-  let router = {
-    navigate: jasmine.createSpy('navigate')
-  }
+  let location: Location;
+ 
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -23,7 +22,7 @@ describe('ConsultantComponent', () => {
       imports:[ReactiveFormsModule,HttpClientModule, ToastrModule.forRoot({
         preventDuplicates: true
       }), RouterTestingModule],
-      providers:[CustomerService,{ provide: Router, useValue: router }]
+      providers:[CustomerService, Location]
     })
     .compileComponents();
   });
@@ -69,18 +68,6 @@ describe('ConsultantComponent', () => {
         expect(mycomponentSpy).not.toHaveBeenCalled();
         expect(customerSpy).not.toHaveBeenCalled();
       });
-  })
-
-  xit('should call postCustomer method of customer service on submit',() =>{
-     //arange
-     const customerSpy = spyOn(customerService,'postCustomer').and.callThrough(); 
-
-     //act
-     component.onSubmit();
- 
-     //assert
-     expect(customerSpy).toHaveBeenCalledTimes(1);
-     expect(router.navigate).toHaveBeenCalledWith(['/'])
   })
 
 });

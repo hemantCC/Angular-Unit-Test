@@ -50,7 +50,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   // filters the data upon search
   filterDataSource(filterString: string) {
     this.dataSource.filter = filterString.trim().toLocaleLowerCase();
-  }
+  } 
 
   ngOnDestroy() {
     this.subscription.unsubscribe(); // unsubscribes getting the customer

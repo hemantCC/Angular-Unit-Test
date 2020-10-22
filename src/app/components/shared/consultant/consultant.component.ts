@@ -50,7 +50,7 @@ export class ConsultantComponent implements OnChanges, OnDestroy {
           this.toastr.success(
             'Your Customer data has been saved!',
             'Sucessful'
-          );
+          );debugger;
           localStorage.removeItem('customerData');
           this.router.navigateByUrl('/');
           }
