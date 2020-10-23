@@ -16,6 +16,7 @@ export class FaInformationComponent implements OnChanges {
   
   @Input() master3Controls: any[];      // controls as inputs from parent component
   master3Form: FormGroup;               // Form Group object
+  @Input() currentCustomerDetails:any = {}            // holds current customer data if any
   
   //#endregion variables
 
@@ -36,7 +37,28 @@ export class FaInformationComponent implements OnChanges {
         this.master3Form.addControl(control.entityName, new FormControl(''));
       }
     });
-  }
+    if(this.currentCustomerDetails !== undefined){
+      this.initializeFormValues();
+      } 
+    }
+  
+    //initialize form values
+    initializeFormValues(){
+      var data='';
+      this.master3Controls.forEach(control => {
+          Object.keys(this.currentCustomerDetails).forEach(key=>{
+            if(key.toLocaleLowerCase() === control.entityName.toLocaleLowerCase()){
+              data  = this.currentCustomerDetails[key]
+              return;
+            }
+          }) 
+          if (control.module === 'FAInformation'){      
+            this.master3Form.patchValue({               // initializes form values 
+              [control.entityName] : data
+            })
+          }
+      });
+    }
 
 
   // handles  form submition 

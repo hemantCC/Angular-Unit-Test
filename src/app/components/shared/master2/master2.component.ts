@@ -23,6 +23,7 @@ export class Master2Component implements OnChanges {
 
   @Input() master2Controls: any[];
   master2Form: FormGroup;
+  @Input() currentCustomerDetails:any = {}            // holds current customer data if any
 
   //#endregion variables
 
@@ -43,9 +44,30 @@ export class Master2Component implements OnChanges {
       if (control.module === 'Master2')
         this.master2Form.addControl(control.entityName, new FormControl(''));
     });
-  }
+    if(this.currentCustomerDetails !== undefined){
+      this.initializeFormValues();
+      } 
+    }
+  
+    //initialize form values
+    initializeFormValues(){
+      var data='';
+      this.master2Controls.forEach(control => {
+          Object.keys(this.currentCustomerDetails).forEach(key=>{
+            if(key.toLocaleLowerCase() === control.entityName.toLocaleLowerCase()){
+              data  = this.currentCustomerDetails[key]
+              return;
+            }
+          }) 
+          if (control.module === 'Master2'){      
+            this.master2Form.patchValue({               // initializes form values 
+              [control.entityName] : data
+            })
+          }
+      });
+    }
 
-  // handles submit
+  // handles submit 
   onSubmit() {
     this._customerService.saveCustomerData(this.master2Form.value);
     this.toastr.success('Your Customer data has been saved!', 'Sucessful');

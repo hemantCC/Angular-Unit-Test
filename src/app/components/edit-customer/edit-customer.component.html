@@ -26,17 +26,17 @@
   </mat-tab>
   <mat-tab label="Master 2">
     <div class="container">
-      <app-master2 [master2Controls]="controls"></app-master2>
+      <app-master2 [master2Controls]="controls" [currentCustomerDetails]="customerDetails"></app-master2>
     </div>
   </mat-tab>
   <mat-tab label="FA Information">
     <div class="container">
-      <app-fa-information [master3Controls]="controls"></app-fa-information>
+      <app-fa-information [master3Controls]="controls" [currentCustomerDetails]="customerDetails"></app-fa-information>
     </div>
   </mat-tab>
   <mat-tab label="Consultant">
     <div class="container">
-      <app-consultant [master4Controls]="controls"></app-consultant>
+      <app-consultant [master4Controls]="controls" [currentCustomerDetails]="customerDetails ? customerDetails : null "></app-consultant>
     </div>
   </mat-tab>
 </mat-tab-group>

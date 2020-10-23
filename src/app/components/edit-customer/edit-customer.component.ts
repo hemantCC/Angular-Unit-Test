@@ -17,7 +17,7 @@ export class EditCustomerComponent implements OnInit, OnDestroy {
   subscription: Subscription;             // holds the subscription for getting controls
   routeSubscription: Subscription;        // holds the subscription for router
   customerId: number;                     // stores the current id for edit
-  customerDetails:any;                    // information regarding selected customer
+  customerDetails:any ={};                    // information regarding selected customer
   customerSubscription:Subscription;
   constructor(
     private _controlService: ControlService,

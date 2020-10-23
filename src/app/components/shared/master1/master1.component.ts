@@ -18,9 +18,9 @@ export class Master1Component implements OnChanges {
   @Input() master1Controls: any[];                    //holds controls for master 1
   master1Form: FormGroup;                             //master 1 from Group
   subscription: Subscription;                         //holds subscription for getting control
-  @Input() currentCustomerDetails:any = {}            // holds current customer data if any
+  @Input() currentCustomerDetails:any                 // holds current customer data if any
 
-  //#endregion variables 
+  //#endregion variables  
 
   constructor(
     private formBuilder: FormBuilder, 
@@ -38,9 +38,13 @@ export class Master1Component implements OnChanges {
         if (control.module === 'Master1'){
           this.master1Form.addControl(control.entityName, new FormControl(''));
         }
-    });
+    }); 
+    
     if(this.currentCustomerDetails !== undefined){
-    this.initializeFormValues();
+      this.initializeFormValues();
+      console.log(this.currentCustomerDetails);
+      // localStorage.clear
+      localStorage.setItem('customerData',JSON.stringify(this.currentCustomerDetails))
     } 
   }
 
