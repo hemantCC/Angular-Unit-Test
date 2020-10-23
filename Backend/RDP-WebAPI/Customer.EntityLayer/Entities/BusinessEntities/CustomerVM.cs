@@ -6,6 +6,7 @@ namespace Customer.EntityLayer.Entities.BusinessEntities
 {
     public class CustomerVM
     {
+        public int Id { get; set; }
         #region Master1 Properties
         public string Salutation { get; set; }
         public string Ta { get; set; }

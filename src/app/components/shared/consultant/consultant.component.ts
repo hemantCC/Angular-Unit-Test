@@ -73,7 +73,6 @@ export class ConsultantComponent implements OnChanges, OnDestroy {
 
   // handles submit
   async onSubmit() {
-    if(this.editMode === false){
       this.subscription = this._customerService
         .postCustomer(this.master4Form.value)
         .subscribe(
@@ -81,16 +80,12 @@ export class ConsultantComponent implements OnChanges, OnDestroy {
             this.toastr.success(
               'Your Customer data has been saved!',
               'Sucessful'
-            );debugger;
+            );
             localStorage.removeItem('customerData');
             this.router.navigateByUrl('/');
             }
         ); 
     }
-    else {
-      console.log(JSON.parse(localStorage.getItem('customerData')));
-    }
-  }
 
   // handles unsubscribe
   ngOnDestroy() {

@@ -71,6 +71,7 @@ namespace Customer.DataAccessLayer
             TblConsultant consultant = await _context.TblConsultant.Where(x => x.Customer == id).FirstOrDefaultAsync();
             CustomerVM customerVM = new CustomerVM()
             {
+                Id = id,
                 Salutation = master1.Salutation,
                 Ta = master1.Ta,
                 Tb = master1.Tb,
